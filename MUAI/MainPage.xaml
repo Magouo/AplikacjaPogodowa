@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MUAI.MainPage"
+             Title="Pogoda - MUAI">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Miasto (API)" FontAttributes="Bold" />
+            <Entry x:Name="CityEntry" Placeholder="np. Wrocław" />
+
+            <Button Text="Pobierz z API" Clicked="OnApiClick" />
+
+            <Label Text="--- Ręczne dodawanie ---" FontAttributes="Bold" />
+
+            <Entry x:Name="ManualCity" Placeholder="Miasto" />
+            <Entry x:Name="ManualTemp" Placeholder="Temperatura (°C)" Keyboard="Numeric" />
+            <Entry x:Name="ManualHumidity" Placeholder="Wilgotność (%)" Keyboard="Numeric" />
+            <Entry x:Name="ManualPressure" Placeholder="Ciśnienie (hPa)" Keyboard="Numeric" />
+            <Entry x:Name="ManualWindSpeed" Placeholder="Wiatr (m/s)" Keyboard="Numeric" />
+            <Entry x:Name="ManualWindDeg" Placeholder="Kierunek wiatru (°)" Keyboard="Numeric" />
+
+            <Button Text="Dodaj ręcznie" Clicked="OnManualAddClick" />
+
+            <Label Text="--- Dane pogodowe z bazy ---" FontAttributes="Bold" />
+            <CollectionView x:Name="WeatherList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="5">
+                            <Label Text="{Binding CityName}" FontAttributes="Bold" />
+                            <Label Text="{Binding Temp, StringFormat='Temp: {0} °C'}" />
+                            <Label Text="{Binding Humidity, StringFormat='Wilgotność: {0}%'}" />
+                            <Label Text="{Binding Pressure, StringFormat='Ciśnienie: {0} hPa'}" />
+                            <Label Text="{Binding Wind.WindSpeed, StringFormat='Wiatr: {0} m/s'}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
